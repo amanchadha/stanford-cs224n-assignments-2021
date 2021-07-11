@@ -5,7 +5,7 @@ There are five assignments in total. Here is a brief description of each one of 
 
 ## Assignment 1. Word Embeddings
 
-- This assignment [[notebook](a1/exploring_word_vectors_solved.ipynb), [PDF](a2/CS224nAssignment1.pdf)] has two parts which deal with representing words with dense vectors (i.e., word vectors or word embeddings). Word vectors are often used as a fundamental component for downstream NLP tasks, e.g. question answering, text generation, translation, etc., so it is important to build some intuitions as to their strengths and weaknesses. Here, you will explore two types of word vectors: those derived from co-occurrence matrices (which uses SVD), and those derived via GloVe (based on maximum-likelihood training in ML). 
+- This assignment [[notebook](a1/exploring_word_vectors_solved.ipynb), [PDF](a1/CS224nAssignment1.pdf)] has two parts which deal with representing words with dense vectors (i.e., word vectors or word embeddings). Word vectors are often used as a fundamental component for downstream NLP tasks, e.g. question answering, text generation, translation, etc., so it is important to build some intuitions as to their strengths and weaknesses. Here, you will explore two types of word vectors: those derived from co-occurrence matrices (which uses SVD), and those derived via GloVe (based on maximum-likelihood training in ML). 
 
 ### 1. Count-Based Word Vectors
 
@@ -32,7 +32,7 @@ There are five assignments in total. Here is a brief description of each one of 
 - It is highly recommend for anyone interested in gaining a deep understanding of Word2Vec to first do the theoretical part of this assignment and only then proceed to the practical part.
 
 <p align="center">
-<img src="figures/Word2Vec.jpg" alt="drawing" width="450"/>
+<img src="figures/word2vec.jpg" alt="drawing" width="450"/>
 </p>
 
 ## Assignment 3. Neural Dependency Parsing
@@ -61,7 +61,7 @@ There are five assignments in total. Here is a brief description of each one of 
 - Then, you’ll take a harder look at the system you built, and reason about the implications and concerns about relying on such implicit pretrained knowledge.
 
 <p align="center">
-<img src="figures/attn.jpeg"/>
+<img src="figures/attn.jpg"/>
 </p>
 
 ## Handouts
