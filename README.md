@@ -27,7 +27,7 @@ There are five assignments in total. Here is a brief description of each one of 
 
 ## Assignment 2. Understanding and Implementing Word2Vec
 
-- In this [assignment](a2/CS224nAssignment2.pdf), you will get familiar with the Word2Vec algorithm. The key insight behind Word2Vec is that "a word is known by the company it keeps". There are two models introduced by the Word2Vec paper based on this idea: (i) the skip-gram model and (ii) Continuous Bag Of Words (CBOW). 
+- In this [assignment](a2/CS224nAssignment2.pdf), you will get familiar with the Word2Vec algorithm. The key insight behind Word2Vec is that "a word is known by the company it keeps". There are two models introduced by the Word2Vec paper based on this idea: (i) the skip-gram model and (ii) the Continuous Bag Of Words (CBOW) model. 
 - In this assignment, you'll be implementing the skip-gram model using NumPy. You have to implement the both version of Skip-gram; the first one is with the naive Softmax loss and the second one -- which is much faster -- with the negative sampling loss. Your implementation of the first version is just sanity-checked on a small dataset, but you have to run the second version on the Stanford Sentiment Treebank dataset. 
 - It is highly recommend for anyone interested in gaining a deep understanding of Word2Vec to first do the theoretical part of this assignment and only then proceed to the practical part.
 
