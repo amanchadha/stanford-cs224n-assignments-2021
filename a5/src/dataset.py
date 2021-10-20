@@ -224,21 +224,21 @@ class CharCorruptionDataset(Dataset):
         #   followed by the content that was removed, and the padding characters.
         
         masked_string = prefix + self.MASK_CHAR + suffix + self.MASK_CHAR + masked_content
-        masked_string = masked_string + self.PAD_CHAR*(self.block_size - len(masked_string))
+        masked_string += self.PAD_CHAR*(self.block_size - len(masked_string))
         
         # We now use masked_string to construct the input and output example pair. To
         # do so, simply take the input string to be masked_string[:-1], and the output
         # string to be masked_string[1:]. In other words, for each character, the goal is
         # to predict the next character in the masked string.
         
-        x = masked_string[:-1]
-        y = masked_string[1:]
+        input = masked_string[:-1]
+        output = masked_string[1:]
         
         # Making use of the vocabulary that you defined, encode the resulting input
         # and output strings as Long tensors and return the resulting data point.
                 
-        x = torch.tensor([self.stoi[c] for c in x], dtype=torch.long)
-        y = torch.tensor([self.stoi[c] for c in y], dtype=torch.long)
+        x = torch.tensor([self.stoi[c] for c in input], dtype=torch.long)
+        y = torch.tensor([self.stoi[c] for c in output], dtype=torch.long)
         return x, y
 
 """

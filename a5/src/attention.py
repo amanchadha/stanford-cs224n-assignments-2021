@@ -104,20 +104,32 @@ class SynthesizerAttention(nn.Module):
 
         B, T, C = x.size()
 
-        import math
         # calculate query, key, values for all heads in batch and move head forward to be the batch dim
-        a = self.w1(x).view(B, T, self.n_head, C // self.n_head).transpose(1, 2) # (B, nh, T, hs)
-        b = self.w2.view(B, T, self.n_head, int(math.sqrt(C) // self.n_head * self.block_size-1)).transpose(1, 2) # (B, nh, T, hs)
+        w1 = self.w1(x).view(B, T, self.n_head, C // self.n_head).transpose(1, 2) # (B, nh, T, hs) -> (1, 8, 32, 32)
+        # print("a", a.shape)
+
+        w2 = self.w2[:, :T] # (hs, T) -> (32, 127)
+        # print("b", b.shape)
+
+        b2 = self.b2[:T] # (T) -> (127)
+        # print("b2", b2.shape)
+
         v = self.value(x).view(B, T, self.n_head, C // self.n_head).transpose(1, 2) # (B, nh, T, hs)
+        # print(v.shape)
 
         # Synthesizer Attention; Self-attend: (B, nh, T, hs) x (B, nh, hs, T) -> (B, nh, T, T)
-        att = (F.relu(a) @ b + self.b2)
-        
+        att = (F.relu(w1) @ w2 + b2)
+        # print(att.shape)
+
         # Mask out the future
-        att = att.masked_fill(self.mask[:,:,:T,:T] == 0, -1e10) # todo: just use float('-inf') instead?
+        att = att.masked_fill(self.mask[:, :, :T, :T] == 0, -1e10) # todo: just use float('-inf') instead?
         att = F.softmax(att, dim=-1)
-        att = att @ v
+        # print(att.shape)
+
         att = self.attn_drop(att)
+        # print(att.shape)
+        # print(v.shape)
+
         y = att @ v # (B, nh, T, T) x (B, nh, T, hs) -> (B, nh, T, hs)
         y = y.transpose(1, 2).contiguous().view(B, T, C) # re-assemble all head outputs side by side
 
